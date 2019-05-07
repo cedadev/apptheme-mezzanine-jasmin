@@ -1,0 +1,62 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags static columns apptheme_mezzanine_tags %}
+
+{% block main %}
+
+<div>
+
+        <ul class="nav nav-pills" id="myTab" role="tablist">
+            {% for item in categories %}
+            <li class="nav-item">
+                <a class="nav-link {% if forloop.first %} active {% endif %}" id="{{item.slug}}-tab" data-toggle="tab" href="#{{item.slug}}" role="tab" aria-controls="{{item.slug}}">{{item.title}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class="tab-content mt-4" id="myTabContent">
+            {% for cat in categories %}
+            <div class="tab-pane fade show {% if forloop.first %}active{% endif %}" id="{{cat.slug}}" role="tabpanel" aria-labelledby="{{cat.slug}}-tab">
+                <!-- content for each category goes here -->
+                <p>here's the content for {{cat}}</p>
+                
+                    <div class="card-deck">
+                        {% for item in items|portfolioitem_in_category:cat %}
+                            {# does item.categories.all contain current cat ? (filter) #}
+
+                            <div class="col-4">
+                                <div class="card text-center mt-4" style="min-width: 18rem; max-width: 18rem;">
+                                    <div class="card-header">    
+                                            {% if item.portfolioitem.icon %}
+                                                <span class="fa-stack fa-4x">
+                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                    <i class="fa {{ item.portfolioitem.icon }} fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            {% else %}
+                                                <span class="fa-stack fa-4x">
+                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                    <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            {% endif %}
+                                    </div>
+                                    <div class="card-body">
+                                        <h4><a class="inherit-color" href="{{ item.get_absolute_url }}">{{ item.portfolioitem.title }}</a></h4>
+                                        {{item.portfolioitem.leader | safe}}<br>
+                                        <a href="{{ item.get_absolute_url }}" class="btn btn-default">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+
+    
+    </div>
+
+{% endblock %}
+
+{% block right_wrapper %}{% endblock %}

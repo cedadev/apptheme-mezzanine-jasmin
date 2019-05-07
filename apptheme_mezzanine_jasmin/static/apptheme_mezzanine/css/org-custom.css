@@ -1,0 +1,17 @@
+
+/*=======================================
+ for additional customisations specific to this org's apptheme-mezzanine
+=========================================*/
+
+.navbar.fixed-top {
+  /* padding: 4px 4px; */
+  padding-top: 14px;
+  padding-bottom: 16px;
+}
+
+.alert {
+  margin-bottom: 0rem;
+  border-radius: 0rem;
+  padding-top: 0.55rem;
+  padding-bottom: 0.35rem;
+}

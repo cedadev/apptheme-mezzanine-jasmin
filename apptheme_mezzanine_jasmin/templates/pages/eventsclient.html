@@ -1,0 +1,17 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags feedparser_tags static %}
+
+{% block main %}
+
+<div class="row">
+    <div class="col-lg-12">
+        {{ page.richtextpage.content | safe }}
+    </div>
+</div>
+
+<hr>
+
+{% feedparser_render 'http://localhost:8000/app/events/feeds/rss/' template='jasmin_events_feed_page.html' renderer='safe-xml' %}
+
+{% endblock %}
