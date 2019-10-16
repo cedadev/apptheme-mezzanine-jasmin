@@ -1,0 +1,15 @@
+{% extends "apptheme_mezzanine/base.html" %}
+
+{% block meta_title %}Error: 500 - Server Error{% endblock %}
+{% block breadcrumb_wrapper %}
+{% endblock %}
+
+{% block main %}
+<div class="alert alert-warning">
+        <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i></h4>
+        <p class="mb-0">Error 500: Server error</p>
+    </div>
+
+<p>An error occurred while trying to display the page.</p>
+<p>For help, please contact the <a href="mailto:support@ceda.ac.uk">CEDA Helpdesk</a>.</p>
+{% endblock %}
